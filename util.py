@@ -11,7 +11,7 @@ if "import":
         pass
 
     if "personal": 
-        from fp import curry
+        from fp.curry import curry
 
 __all__ = ["makedirs", "url_to_path", "add_domain", "get_href", "has_href"]
 
