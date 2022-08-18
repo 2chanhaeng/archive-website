@@ -26,3 +26,7 @@ def url_to_path(url:str) -> str:
 @curry
 def add_domain(domain:str, path:str) -> str:
     return domain + path if path[0] == "/" else path
+
+
+def has_href(a:Tag) -> bool:
+    return "href" in a.attrs and a.attrs["href"] != ""
