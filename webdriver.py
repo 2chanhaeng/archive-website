@@ -42,3 +42,19 @@ def install(browser, path:str=default_path) -> str:
                 "o":install("opera", path),
                 "y":install(default_browser, path),
             }[sub]
+
+
+def get_path(browser:str|int=default_browser, update:bool=False, path:str=default_path) -> str:
+    if type(browser) is int:
+        browser = int_to_browser(browser)
+    drivers_path:str = path + "/drivers.json"
+    if not os.path.exists(drivers_path):
+        with open(drivers_path, 'w') as store:
+            store.write("{}")
+    with open(drivers_path, 'r') as store:
+        drivers:Dict[str,str] = json.loads(store.read())
+    if update or browser not in drivers:
+        drivers[browser] = install()
+        with open(drivers_path, 'w') as store:
+            json.dump(drivers, store, indent=2)
+    return drivers[browser]
