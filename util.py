@@ -30,3 +30,7 @@ def add_domain(domain:str, path:str) -> str:
 
 def has_href(a:Tag) -> bool:
     return "href" in a.attrs and a.attrs["href"] != ""
+
+
+def get_href(a:Tag) -> str:
+    return a.attrs["href"]
